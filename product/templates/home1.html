@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="list-group">
+        {% for category in categories %}
+            {% if not category.parent %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ category.title }}
+        <li class="list-group-item align-items-center">
+            <ul>
+                {% for child in category.children.all %}
+                <div style="display: flex; justify-content: space-between;">
+                <li><a href="{%url 'list' child.slug%}" >{{ child.title }}</a></li>
+                    <span class="badge bg-primary rounded-pill">{{ child.products.count }}</span>
+                </div>
+                    {% endfor %}
+            </ul>
+          </li>
+        </li>
+        {% endif %}
+        {% endfor %}
+</ul>
+{% endblock %}
