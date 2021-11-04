@@ -11,9 +11,10 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a href="{% url 'home'%}" class="navbar-brand">PyShop</a>
-      <a href="{% url 'product-create' %}">&plus;</a>
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <a href="{% url 'product-create' %}"> CREATE NEW PRODUCT</a>
+    <form method="get" action="{% url 'search'%}" class="d-flex">
+<!--        action перекидывать на url-->
+      <input name = "q" class="form-control me-2" type="search" placeholder="Ищи тут" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>

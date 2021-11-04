@@ -26,5 +26,10 @@ class Product(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='prod_images')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('detail', kwargs={'product_id': self.pk})
+
     def __str__(self):
         return self.name
