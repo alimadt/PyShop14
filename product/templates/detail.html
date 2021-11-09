@@ -8,8 +8,10 @@
     <p class="card-text">{{product.description}}</p>
     <p class="card-text"><small>{{product.status}}</small></p>
     <p class="card-text">{{product.price}} сом</p>
+    {% if request.user.is_superuser%}
     <a class="btn btn-warning" href="{% url 'product-update' product.id %}" role="button">Update</a>
     <a class="btn btn-danger" href="{% url 'product-delete' product.id %}" role="button">Delete</a>
+    {% endif %}
 
   </div>
 </div>

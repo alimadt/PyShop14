@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,23 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a href="{% url 'home'%}" class="navbar-brand">PyShop</a>
+      {% if request.user.is_superuser %}
       <a href="{% url 'product-create' %}"> CREATE NEW PRODUCT</a>
+      {% endif %}
+<!--      Is Authenticated-->
+      {% if not request.user.is_authenticated %}
+        <a href="{% url 'register'%}">Sign Up</a>
+        <a href="{% url 'login'%}">Log In</a>
+      {% else %}
+      <h4>{{ request.user.username }}</h4>
+      <a href = "{% url 'logout'%}">Log Out</a>
+      {% endif%}
+<!--      End authentication-->
+<!--      Cart icon-->
+      <a href="{% url 'cart_detail' %}">
+          <img style="width:30px; height:auto;" src="{% static 'img/opencart-brands.svg' %}">
+      </a>
+
     <form method="get" action="{% url 'search'%}" class="d-flex">
 <!--        action перекидывать на url-->
       <input name = "q" class="form-control me-2" type="search" placeholder="Ищи тут" aria-label="Search">
